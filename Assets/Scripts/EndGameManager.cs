@@ -18,7 +18,7 @@ public class EndGameManager
         );
     }
 
-    public void Quit()
+    public void QuitGame()
     {
         Application.Quit();
     }

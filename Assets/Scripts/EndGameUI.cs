@@ -9,7 +9,11 @@ public class EndGameUI
     void Start()
     {
         scoreText.text =
-            "Final Score : "
-            +GameManager.finalScore;
+            "Score: " +
+            GameManager.finalScore +
+            "    Time: " +
+            GameManager.FormatTime(
+                GameManager.finalTime
+            );
     }
 }
