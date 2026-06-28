@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,12 +18,17 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text scoreText;
     public TMP_Text timerText;
+    public TMP_Text pauseText;
+    public GameObject pausePanel;
     public GameObject[] lifeIcons;
 
     float elapsedTime;
     int currentLives;
     int displayedScore;
+    int highestScore;
     Coroutine scoreAnimation;
+    Coroutine resumeCountdown;
+    bool isPaused;
 
     void Awake()
     {
@@ -33,14 +39,32 @@ public class GameManager : MonoBehaviour
     {
         currentLives = startingLives;
         displayedScore = score;
+        highestScore = score;
 
         UpdateScoreText(displayedScore);
         UpdateTimerText();
         UpdateLivesUI();
+
+        if(pauseText!=null)
+            pauseText.gameObject.SetActive(false);
+
+        if(pausePanel!=null)
+            pausePanel.SetActive(false);
     }
 
     void Update()
     {
+        if(
+            Keyboard.current!=null &&
+            Keyboard.current.escapeKey.wasPressedThisFrame
+        )
+        {
+            TogglePause();
+        }
+
+        if(isPaused)
+            return;
+
         elapsedTime +=
             Time.deltaTime;
 
@@ -53,6 +77,12 @@ public class GameManager : MonoBehaviour
             Mathf.Max(
                 0,
                 score + point
+            );
+
+        highestScore =
+            Mathf.Max(
+                highestScore,
+                score
             );
 
         AnimateScoreText();
@@ -138,7 +168,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        finalScore = score;
+        Time.timeScale = 1f;
+
+        finalScore = highestScore;
         finalTime = elapsedTime;
 
         SceneManager.LoadScene(
@@ -178,6 +210,86 @@ public class GameManager : MonoBehaviour
                 .SetActive(i<currentLives);
             }
         }
+    }
+
+    void TogglePause()
+    {
+        if(!isPaused)
+        {
+            isPaused = true;
+            Time.timeScale = 0f;
+
+            if(pauseText!=null)
+                pauseText.gameObject.SetActive(false);
+
+            if(pausePanel!=null)
+                pausePanel.SetActive(true);
+            else
+                SetPauseText("PAUSED");
+
+            return;
+        }
+
+        if(resumeCountdown==null)
+        {
+            if(pausePanel!=null)
+                pausePanel.SetActive(false);
+
+            resumeCountdown =
+                StartCoroutine(
+                    ResumeCountdownRoutine()
+                );
+        }
+    }
+
+    IEnumerator ResumeCountdownRoutine()
+    {
+        for(int i=3;i>0;i--)
+        {
+            SetPauseText(i.ToString());
+
+            yield return
+                new WaitForSecondsRealtime(1f);
+        }
+
+        isPaused = false;
+        Time.timeScale = 1f;
+        resumeCountdown = null;
+
+        if(pauseText!=null)
+            pauseText.gameObject.SetActive(false);
+    }
+
+    void SetPauseText(string text)
+    {
+        if(pauseText==null)
+            return;
+
+        pauseText.gameObject.SetActive(true);
+        pauseText.text = text;
+    }
+
+    void OnDestroy()
+    {
+        Time.timeScale = 1f;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene(
+            "Gameplay"
+        );
+    }
+
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene(
+            "MainMenu"
+        );
     }
 
     public static string FormatTime(

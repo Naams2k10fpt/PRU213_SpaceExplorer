@@ -9,7 +9,7 @@ public class EndGameUI
     void Start()
     {
         scoreText.text =
-            "Score: " +
+            "Best Score: " +
             GameManager.finalScore +
             "    Time: " +
             GameManager.FormatTime(
