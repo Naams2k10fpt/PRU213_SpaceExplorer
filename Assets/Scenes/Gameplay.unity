@@ -374,6 +374,8 @@ MonoBehaviour:
   firePoint: {fileID: 319511536}
   heatText: {fileID: 1200000012}
   shieldVisual: {fileID: 1200000050}
+  overheatBeepSound: {fileID: 8300000, guid: 8e89a268c9ab127478bc7721478b0c2d, type: 3}
+  overheatSound: {fileID: 8300000, guid: 4ad044d04408e384f89bb969a0e8b5c6, type: 3}
   maxHeat: 100
   heatPerShot: 5
   normalCoolRate: 15

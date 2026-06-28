@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public Transform firePoint;
     public TMP_Text heatText;
     public GameObject shieldVisual;
+    public AudioClip overheatBeepSound;
+    public AudioClip overheatSound;
 
     public float maxHeat = 100f;
     public float heatPerShot = 5f;
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private Camera cam;
     private SpriteRenderer sr;
+    private AudioSource audioSource;
     private float currentHeat;
     private bool isOverheated;
     private bool isInvulnerable;
@@ -34,6 +37,14 @@ public class PlayerController : MonoBehaviour
     {
         cam = Camera.main;
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+
+        if(audioSource==null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f;
+
         useWasdControls =
             PlayerPrefs.GetString(
                 MenuManager.ControlModeKey,
@@ -104,14 +115,29 @@ public class PlayerController : MonoBehaviour
             Quaternion.identity
         );
 
+        float previousHeat =
+            currentHeat;
+
         currentHeat =
             Mathf.Min(
                 maxHeat,
                 currentHeat + heatPerShot
             );
 
+        if(
+            previousHeat<maxHeat*0.9f &&
+            currentHeat>=maxHeat*0.9f &&
+            currentHeat<maxHeat
+        )
+        {
+            PlaySound(overheatBeepSound);
+        }
+
         if(currentHeat>=maxHeat)
+        {
             isOverheated = true;
+            PlaySound(overheatSound);
+        }
 
         UpdateHeatText();
     }
@@ -167,6 +193,14 @@ public class PlayerController : MonoBehaviour
                 ? Color.yellow
                 : Color.white;
         }
+    }
+
+    void PlaySound(AudioClip clip)
+    {
+        if(clip==null)
+            return;
+
+        audioSource.PlayOneShot(clip);
     }
 
     public void TryTakeHit()
