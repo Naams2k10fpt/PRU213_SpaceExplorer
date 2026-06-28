@@ -374,8 +374,17 @@ MonoBehaviour:
   firePoint: {fileID: 319511536}
   heatText: {fileID: 1200000012}
   shieldVisual: {fileID: 1200000050}
+  shootSound: {fileID: 8300000, guid: 943058956151d044cb6e24eb86e23cfa, type: 3}
   overheatBeepSound: {fileID: 8300000, guid: 8e89a268c9ab127478bc7721478b0c2d, type: 3}
   overheatSound: {fileID: 8300000, guid: 4ad044d04408e384f89bb969a0e8b5c6, type: 3}
+  shieldPickupSound: {fileID: 8300000, guid: f8ba0446046f46240bb968930bfcfed2, type: 3}
+  shieldLostSound: {fileID: 8300000, guid: e8b891a98fbb3ec43b0b7f1f3f37c433, type: 3}
+  impactSounds:
+  - {fileID: 8300000, guid: c2617a12c800ec44da55441ebd7a9fb8, type: 3}
+  - {fileID: 8300000, guid: d1b31bace2a14c0418e654f0f50f0217, type: 3}
+  - {fileID: 8300000, guid: 209b5db28cdcb384ba5f24381f5dd1b8, type: 3}
+  - {fileID: 8300000, guid: e551e2e84b7cde74abf0f9ab31722239, type: 3}
+  - {fileID: 8300000, guid: 1ace57b68853ca646b053873366a4f83, type: 3}
   maxHeat: 100
   heatPerShot: 5
   normalCoolRate: 15

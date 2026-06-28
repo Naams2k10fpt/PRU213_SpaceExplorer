@@ -10,8 +10,12 @@ public class PlayerController : MonoBehaviour
     public Transform firePoint;
     public TMP_Text heatText;
     public GameObject shieldVisual;
+    public AudioClip shootSound;
     public AudioClip overheatBeepSound;
     public AudioClip overheatSound;
+    public AudioClip shieldPickupSound;
+    public AudioClip shieldLostSound;
+    public AudioClip[] impactSounds;
 
     public float maxHeat = 100f;
     public float heatPerShot = 5f;
@@ -115,6 +119,8 @@ public class PlayerController : MonoBehaviour
             Quaternion.identity
         );
 
+        PlaySound(shootSound);
+
         float previousHeat =
             currentHeat;
 
@@ -203,6 +209,22 @@ public class PlayerController : MonoBehaviour
         audioSource.PlayOneShot(clip);
     }
 
+    void PlayRandomSound(AudioClip[] clips)
+    {
+        if(clips==null || clips.Length==0)
+            return;
+
+        AudioClip clip =
+            clips[
+                Random.Range(
+                    0,
+                    clips.Length
+                )
+            ];
+
+        PlaySound(clip);
+    }
+
     public void TryTakeHit()
     {
         if(isInvulnerable)
@@ -213,6 +235,8 @@ public class PlayerController : MonoBehaviour
             ConsumeShield();
             return;
         }
+
+        PlayRandomSound(impactSounds);
 
         isInvulnerable = true;
 
@@ -234,6 +258,7 @@ public class PlayerController : MonoBehaviour
     public void ActivateShield(float duration)
     {
         hasShield = true;
+        PlaySound(shieldPickupSound);
 
         if(shieldVisual!=null)
             shieldVisual.SetActive(true);
@@ -256,6 +281,7 @@ public class PlayerController : MonoBehaviour
 
         hasShield = false;
         shieldCoroutine = null;
+        PlaySound(shieldLostSound);
 
         if(shieldVisual!=null)
             shieldVisual.SetActive(false);
@@ -264,6 +290,7 @@ public class PlayerController : MonoBehaviour
     void ConsumeShield()
     {
         hasShield = false;
+        PlaySound(shieldLostSound);
 
         if(shieldCoroutine!=null)
         {

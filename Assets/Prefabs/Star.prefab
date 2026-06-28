@@ -170,3 +170,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Star
   speed: 3
+  collectSound: {fileID: 8300000, guid: b9d2f5d0cc5bcb44d92a97d312002760, type: 3}

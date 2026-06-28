@@ -180,3 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Laser
   speed: 10
+  asteroidDestroySounds:
+  - {fileID: 8300000, guid: 9349afcf5d3965d4ca0f894e310f6cc7, type: 3}
+  - {fileID: 8300000, guid: 3438e06e9ddcb864f8149d0644789f0a, type: 3}
+  - {fileID: 8300000, guid: 28c7406da2be0794f9f0f608744e8b5f, type: 3}
+  - {fileID: 8300000, guid: 70bdacaac25cc3146b93a7bee7aee9b3, type: 3}

@@ -3,6 +3,9 @@ using UnityEngine;
 public class Star : MonoBehaviour
 {
     public float speed = 3f;
+    public AudioClip collectSound;
+
+    static AudioSource audioSource;
 
     void Update()
     {
@@ -30,10 +33,39 @@ public class Star : MonoBehaviour
             )
         )
         {
+            PlaySound();
+
             GameManager.instance
                 .AddScore(100);
 
             Destroy(gameObject);
         }
+    }
+
+    void PlaySound()
+    {
+        if(collectSound==null)
+            return;
+
+        CreateAudioSource();
+        audioSource.PlayOneShot(collectSound);
+    }
+
+    void CreateAudioSource()
+    {
+        if(audioSource!=null)
+            return;
+
+        GameObject soundObject =
+            new GameObject("StarSoundAudio");
+
+        DontDestroyOnLoad(soundObject);
+
+        audioSource =
+            soundObject
+            .AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f;
     }
 }
