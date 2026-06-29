@@ -8,6 +8,12 @@ public class EndGameUI
 
     void Start()
     {
+        scoreText.enableWordWrapping = false;
+        scoreText.enableAutoSizing = true;
+        scoreText.fontSizeMin = 24f;
+        scoreText.fontSizeMax = 36f;
+        scoreText.overflowMode = TextOverflowModes.Overflow;
+
         scoreText.text =
             "Best Score: " +
             GameManager.finalScore +

@@ -5,7 +5,7 @@ public class AsteroidSpawner : MonoBehaviour
     public GameObject asteroid;
 
     public float spawnRate = 1.5f;
-    public float difficultyInterval = 30f;
+    public float difficultyInterval = 10f;
     public float spawnRateDecrease = 0.2f;
     public float minSpawnRate = 0.5f;
 
