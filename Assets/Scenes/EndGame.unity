@@ -1168,6 +1168,7 @@ GameObject:
   - component: {fileID: 1331920309}
   - component: {fileID: 1331920308}
   - component: {fileID: 1331920307}
+  - component: {fileID: 1331920310}
   m_Layer: 0
   m_Name: EndGameManager
   m_TagString: Untagged
@@ -1200,6 +1201,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndGameUI
   scoreText: {fileID: 351961290}
+--- !u!114 &1331920310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331920306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a86fdc3d0cc4a29a01e969359cdf860, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::MusicPlayer
+  singleClip: {fileID: 8300000, guid: 996de722a01901c418d9d732e67b738e, type: 3}
+  playlist: []
+  loopSingleClip: 0
+  volume: 0.5
 --- !u!4 &1331920309
 Transform:
   m_ObjectHideFlags: 0

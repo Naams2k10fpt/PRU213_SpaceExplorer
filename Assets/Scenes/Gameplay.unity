@@ -2386,6 +2386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1745770938}
   - component: {fileID: 1745770939}
+  - component: {fileID: 1745770940}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2432,6 +2433,25 @@ MonoBehaviour:
   - {fileID: 1200000020}
   - {fileID: 1200000030}
   - {fileID: 1200000040}
+--- !u!114 &1745770940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745770937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a86fdc3d0cc4a29a01e969359cdf860, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::MusicPlayer
+  singleClip: {fileID: 0}
+  playlist:
+  - {fileID: 8300000, guid: 68dad689cadbddb4fa239b678f14d741, type: 3}
+  - {fileID: 8300000, guid: 97b11344ed52dcb4d8c1b696f974e65b, type: 3}
+  - {fileID: 8300000, guid: 9c0f2bd6510141c418c7a5e373142b5d, type: 3}
+  loopSingleClip: 1
+  volume: 0.45
 --- !u!1 &2041917920
 GameObject:
   m_ObjectHideFlags: 0

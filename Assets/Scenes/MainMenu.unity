@@ -357,6 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 130540176}
   - component: {fileID: 130540175}
+  - component: {fileID: 130540177}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -380,6 +381,22 @@ MonoBehaviour:
   settingsPanel: {fileID: 3100000100}
   instructionText: {fileID: 2109256745}
   currentControlText: {fileID: 3100000123}
+--- !u!114 &130540177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130540174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a86fdc3d0cc4a29a01e969359cdf860, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::MusicPlayer
+  singleClip: {fileID: 8300000, guid: c0e9618825f754942a38e6708e1c645b, type: 3}
+  playlist: []
+  loopSingleClip: 1
+  volume: 0.45
 --- !u!4 &130540176
 Transform:
   m_ObjectHideFlags: 0
